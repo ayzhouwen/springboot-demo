@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<packaging>jar</packaging>
-	<groupId>com.kingsmartsi</groupId>
-	<artifactId>dcom-iot</artifactId>
+	<groupId>com.zw</groupId>
+	<artifactId>demo-iot</artifactId>
 	<version>1.0</version>
-	<name>dcom-iot</name>
-	<description>dcom iot服务相关模块</description>
+	<name>demo-iot</name>
+	<description>demo iot服务相关模块</description>
 	<properties>
 		<domm-iot.version>1.0</domm-iot.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -70,18 +70,7 @@
 			<scope>test</scope>
 			<version>${boot.version}</version>
 		</dependency>
-		<!--ActiveMq-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
-			<version>${boot.version}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-pool</artifactId>
-			<version>5.10.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
@@ -117,6 +106,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 			<version>2.5.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.11.1</version>
 		</dependency>
 	</dependencies>
 

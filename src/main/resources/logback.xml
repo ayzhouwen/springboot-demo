@@ -89,7 +89,7 @@
 
 
     <!-- 系统模块日志级别控制  -->
-    <logger name="com.kingsmartsi" level="info"/>
+    <logger name="com.zw" level="info"/>
     <!-- Spring日志级别控制  -->
     <logger name="org.springframework" level="warn"/>
 
