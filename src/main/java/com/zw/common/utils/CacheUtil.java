@@ -1,4 +1,5 @@
 package com.zw.common.utils;
+import com.zw.common.utils.cache.LocalCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +12,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 缓存工具类 ,注意如果代码中使用了该方法，请确保在redis缓存和其他缓存都增加对应的功能，
+ * 缓存工具类 ,注意如果代码中使用了该方法，请确保在redis缓存和其他缓存都增加对应的功能
  * @author kingsmartsi
  **/
 @SuppressWarnings(value = {"unchecked", "rawtypes"})
@@ -22,6 +23,8 @@ public class CacheUtil {
     public RedisTemplate redisTemplate;
     @Value("${demo.cacheType}")
     public String cacheType;
+    @Autowired
+    public LocalCache localCache;
     private final  static String UnsupportError="缓存类型不支持";
     /**
      * 缓存基本的对象，Integer、String、实体类等
@@ -30,6 +33,9 @@ public class CacheUtil {
      */
     public <T> void setCacheObject(final String key, final T value) {
         switch (Integer.valueOf(cacheType)) {
+            case 0:
+                localCache.put(key, value, null,null);
+                break;
             case 1:
                 redisTemplate.opsForValue().set(key, value);
                 break;
@@ -49,6 +55,9 @@ public class CacheUtil {
     public <T> void setCacheObject(final String key, final T value, final Integer timeout, final TimeUnit timeUnit) {
 
         switch (Integer.valueOf(cacheType)) {
+            case 0:
+                localCache.put(key, value, timeout,timeUnit);
+                break;
             case 1:
                 redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
                 break;
@@ -101,6 +110,8 @@ public class CacheUtil {
      */
     public <T> T getCacheObject(final String key) {
         switch (Integer.valueOf(cacheType)) {
+            case 0:
+                return (T) localCache.get(key).getValue();
             case 1:
                 ValueOperations<String, T> operation = redisTemplate.opsForValue();
                 return operation.get(key);
@@ -116,6 +127,9 @@ public class CacheUtil {
      */
     public boolean deleteObject(final String key) {
         switch (Integer.valueOf(cacheType)) {
+            case 0:
+                localCache.delete(key);
+                return true;
             case 1:
                 return redisTemplate.delete(key);
             default:
@@ -131,6 +145,8 @@ public class CacheUtil {
      */
     public long deleteObject(final Collection collection) {
         switch (Integer.valueOf(cacheType)) {
+            case 0:
+                return localCache.delete(collection);
             case 1:
                 return redisTemplate.delete(collection);
             default:
@@ -319,6 +335,8 @@ public class CacheUtil {
      */
     public Collection<String> keys(final String pattern) {
         switch (Integer.valueOf(cacheType)) {
+            case 0:
+                return localCache.keys(pattern);
             case 1:
                 return redisTemplate.keys(pattern);
             default:

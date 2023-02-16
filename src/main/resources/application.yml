@@ -1,7 +1,7 @@
 # 项目相关配置
 demo:
-  #缓存类型 1:redis(目前只支持redis),
-  cacheType: 1
+  #缓存类型  0:本地缓存,  1:redis
+  cacheType: 0
   #模块开关 0 代表禁用，1 代表开启
   moduleSwitch:
     #iot模块

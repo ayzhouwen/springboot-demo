@@ -10,10 +10,10 @@
 	</parent>
 	<packaging>jar</packaging>
 	<groupId>com.zw</groupId>
-	<artifactId>demo-iot</artifactId>
+	<artifactId>springboot-demo</artifactId>
 	<version>1.0</version>
-	<name>demo-iot</name>
-	<description>demo iot服务相关模块</description>
+	<name>demo</name>
+	<description>springboot boot 单体业务脚手架</description>
 	<properties>
 		<domm-iot.version>1.0</domm-iot.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -68,18 +68,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<version>${boot.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-			<version>${boot.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-freemarker</artifactId>
 			<version>${boot.version}</version>
 		</dependency>
 
