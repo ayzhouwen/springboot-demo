@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.*;
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -27,6 +28,14 @@ import java.util.Map;
  */
 @Configuration
 public class DruidConfig {
+
+    /**
+     * 取消日志 discard long time none received connection
+     */
+    @PostConstruct
+    public void setUsePingMethod(){
+        System.setProperty("druid.mysql.usePingMethod", "false");
+    }
     @Bean
     @ConfigurationProperties("spring.datasource.druid.master")
     public DataSource masterDataSource(DruidProperties druidProperties) {
