@@ -4,5 +4,7 @@
 
 IDEA 启动如果报java.nio.charset.MalformedInputException: Input length = 1错误
 那么将工程的文件格式调整成UTF-8即可,具体操作
-file->Settings->Editor->File Encodings 
+1. file->Settings->Editor->File Encodings 选择utf-8
+2. IDEA 打开application.yml文件,然后看右下角导航如果有LF改为CRLF
+
 
